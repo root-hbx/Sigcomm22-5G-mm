@@ -7,14 +7,32 @@ This measurement paper involves several experiments, with different methodologie
 ### Instructions to run the artifact
 
 1. The scripts require python3 to be installed on the machine. We recommend that you also set up and activate a python virtual environment. Detailed instructions to set up virtualenv can be found [here](https://help.dreamhost.com/hc/en-us/articles/115000695551-Installing-and-using-virtualenv-with-Python-3).
+   ```bash
+   python3.9 -m venv .venv
+   source .venv/bin/activate
+   ```
 2. Install the required python packages
    ```bash
    pip3 install -r requirements.txt
    ```
+
 ### Generate plots
+
 Run the scripts one by one from inside the [scripts](scripts) folder. The generated results will be put in [plots](plots) folder.
 
+**There are some nits in original artifacts**. They are all fixed in this repo by [bxhu](https://bxhu2004.com/).
+
+When running scripts in this branch, you need to be careful for "relative importing".
+
+Namely, when you wanna run a script, plz use commands like this:
+
+```sh
+# ~ rather than scripts/
+python -m scripts.plot-section5-figure8
+```
+
 ### Generate ``prognos`` results
+
 To generate results presented in Table 3 of the paper, navigate to the [src](src) folder and ``prognos`` or other comparative algorithms to get results. 
 
 The results output by the scripts contain statistics for both 4G-LTE and 5G-NR radio interfaces.
