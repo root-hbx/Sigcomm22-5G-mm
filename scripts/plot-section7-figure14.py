@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import sys
+import os
 import json
 from os import path
 
@@ -6,12 +8,19 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import numpy as np
 
+# Add root directory of to the path for import
+root_dir = path.dirname(path.dirname(path.abspath(__file__)))
+# print(f"Root directory: {root_dir}")
+# print(f"Utils directory exists: {os.path.isdir(os.path.join(root_dir, 'utils'))}")
+# print(f"Utils init exists: {os.path.isfile(os.path.join(root_dir, 'utils', '__init__.py'))}")
+sys.path.insert(0, root_dir)
+
 from utils.context import data_processed_dir, plot_dir
 from utils.utils import plot_handler
 
 # comment out these lines if latex not installed
-plt.rc('font', family='sans-serif', serif='cm10')
-plt.rc('text', usetex=True)
+# plt.rc('font', family='sans-serif', serif='cm10')
+# plt.rc('text', usetex=True)
 
 ############### Config ####################
 SHOW_PLOT_FLAG = False
@@ -71,13 +80,13 @@ if True:  # use truth value to turn on and off plotting
             myax.annotate(key, (stall_improve[key][0] + 0.1, quality_improve[key][0] - 7.0), color=colors[key],
                           fontsize=fontsize_label)
         if key == 'ViVo-PR':
-            myax.annotate("$\\textit{%s}$" % key, (stall_improve[key][0] + 0.11, quality_improve[key][0] + 3.0),
+            myax.annotate(key, (stall_improve[key][0] + 0.11, quality_improve[key][0] + 3.0),
                           color=colors[key], fontsize=fontsize_label)
         if key == 'FESTIVE-GT':
             myax.annotate(key, (stall_improve[key][0] + 0.2, quality_improve[key][0] + 30.0), color=colors[key],
                           fontsize=17)
         if key == 'FESTIVE-PR':
-            myax.annotate("$\\textit{%s}$" % key, (stall_improve[key][0] + 0.6, quality_improve[key][0] - 33.0),
+            myax.annotate(key, (stall_improve[key][0] + 0.6, quality_improve[key][0] - 33.0),
                           color=colors[key], fontsize=17)
     ax2[0].annotate("Better QoE", fontsize=fontsize, horizontalalignment="center", xy=(-0.03, 45.0), xycoords='data',
                     xytext=(0.02, 30.0), textcoords='data',
@@ -149,15 +158,15 @@ if True:  # use truth value to turn on and off plotting
             ax0[0].annotate("fastMPC-GT", (data_vod[scheme][0] + 0.2, data_vod[scheme][1] + 0.09),
                             fontsize=fontsize_label, color=colormap[scheme], weight='bold')
         elif scheme == 'robustMPCHO':
-            ax0[1].annotate("$\\textit{%s}$" % "robustMPC-PR", (data_vod[scheme][0] + 0.08, data_vod[scheme][1] - 0.2),
+            ax0[1].annotate("robustMPC-PR", (data_vod[scheme][0] + 0.08, data_vod[scheme][1] - 0.2),
                             fontsize=fontsize_label, color=colormap[scheme])
         elif scheme == 'fastMPCHO':
             # ax0[0].annotate("$\\textit{%s}$" % 'fastMPC-PR', color=colormap[scheme], fontsize=fontsize_label, horizontalalignment="center", xy=(data_vod[scheme][0], data_vod[scheme][1]), xycoords='data',
             #         xytext=(data_vod[scheme][0]+0.8, data_vod[scheme][1] + 0.18), textcoords='data', arrowprops=dict(arrowstyle="<|-, head_width=0.15, head_length=0.15", connectionstyle="arc3,rad=-0.3", lw=1, color=colormap[scheme], linestyle = '--'))
-            ax0[0].annotate("$\\textit{%s}$" % "fastMPC-PR", (data_vod[scheme][0] + 0.2, data_vod[scheme][1] - 0.18),
+            ax0[0].annotate("fastMPC-PR", (data_vod[scheme][0] + 0.2, data_vod[scheme][1] - 0.18),
                             fontsize=fontsize_label, color=colormap[scheme], weight='bold')
         elif scheme == 'RBHO':
-            ax0[2].annotate("$\\textit{%s}$" % "RB-PR", (data_vod[scheme][0] + 0.27, data_vod[scheme][1] - 0.2),
+            ax0[2].annotate("RB-PR", (data_vod[scheme][0] + 0.27, data_vod[scheme][1] - 0.2),
                             fontsize=fontsize_label, color=colormap[scheme])
         elif scheme == 'RB':
             ax0[2].annotate("RB", (data_vod[scheme][0] + 0.2, data_vod[scheme][1] + 0.01), fontsize=fontsize_label,
