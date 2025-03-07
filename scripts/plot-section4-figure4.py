@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
+import sys
+import os
 from os import path
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+
+# Add root directory of to the path for import
+root_dir = path.dirname(path.dirname(path.abspath(__file__)))
+# print(f"Root directory: {root_dir}")
+# print(f"Utils directory exists: {os.path.isdir(os.path.join(root_dir, 'utils'))}")
+# print(f"Utils init exists: {os.path.isfile(os.path.join(root_dir, 'utils', '__init__.py'))}")
+sys.path.insert(0, root_dir)
 
 from utils.utils import plot_handler, colorlist20
 from utils.context import data_processed_dir, plot_dir
@@ -10,8 +19,8 @@ import matplotlib.font_manager as font_manager
 import bisect
 
 # comment out these lines if latex not installed
-plt.rc('font', family='sans-serif', serif='cm10')
-plt.rc('text', usetex=True)
+# plt.rc('font', family='sans-serif', serif='cm10')
+# plt.rc('text', usetex=True)
 
 ############### Config ####################
 SHOW_PLOT_FLAG = False
